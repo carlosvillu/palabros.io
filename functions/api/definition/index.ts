@@ -2,7 +2,7 @@ interface Env {
   NODE_VERSION: string
 }
 
-export const asynconRequest: PagesFunction<Env> = (context) => {
+export const onRequest: PagesFunction<Env> = async (context) => {
   // Contents of context object
   const {
     request // same as existing Worker API
@@ -14,6 +14,5 @@ export const asynconRequest: PagesFunction<Env> = (context) => {
     // data // arbitrary space for passing data between middlewares
   } = context
 
-  console.log(request.url)
-  return new Response('Hello, world!')
+  return new Response(request.url)
 }
