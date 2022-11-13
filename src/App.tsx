@@ -13,7 +13,7 @@ function App (): ReactElement {
 
     console.log(target.pattern.value)
     if (words.current === undefined) {
-      words.current = await fetch('http://172.20.10.4:3000/words.txt').then(async resp => await resp.text())
+      words.current = await fetch('//words.txt').then(async resp => await resp.text())
     }
 
     if (typeof words.current !== 'string') return
