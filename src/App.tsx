@@ -1,37 +1,43 @@
-import {useState} from "react";
-import reactLogo from './assets/react.svg'
+import { ReactElement, useRef, useState } from 'react'
+import './App.css'
 
+function App (): ReactElement {
+  const [solutionState, setSolutionState] = useState<string[]>([])
+  const words = useRef<string | null>()
+  const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
+    event.preventDefault()
 
+    const target = event.target as typeof event.target & {
+      pattern: { value: string }
+    }
 
+    console.log(target.pattern.value)
+    if (words.current === undefined) {
+      words.current = await fetch('http://172.20.10.4:3000/words.txt').then(async resp => await resp.text())
+    }
 
+    if (typeof words.current !== 'string') return
 
-import './App.css';
-
-function App() {
-  const [count, setCount] = useState(0)
+    const matches = words.current.matchAll(new RegExp('\n' + target.pattern.value + '\n', 'g'))
+    const solution = [...matches].map(match => match[0]).map(match => match.replace('\n', ''))
+    setSolutionState(solution)
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Palabros</h1>
+      <form onSubmit={handleSubmit as unknown as () => void}>
+        <label>Patrón de busqueda:</label>
+        <input tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
+        <button type='submit'>Search</button>
+      </form>
+      {(solutionState.length > 0) && <div>
+        <h2>Coincidencias</h2>
+        <ol>
+          {solutionState.map(word => <li key={word}>{word}</li>)}
+        </ol>
+      </div>}
+
     </div>
   )
 }
