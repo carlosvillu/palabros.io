@@ -2,7 +2,7 @@ interface Env {
   NODE_VERSION: string
 }
 
-export const asynconRequest: PagesFunction<Env> = (context) => {
+export const onRequest: PagesFunction<Env> = async (context) => {
   // Contents of context object
   const {
     request // same as existing Worker API
