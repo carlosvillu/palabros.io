@@ -1,0 +1,7 @@
+@web:registry=https://gitlab.domestika.org/api/v4/packages/npm/
+//gitlab.domestika.org/api/v4/packages/npm/:_authToken=${TOKEN_FOR_GITLAB}
+//gitlab.domestika.org/api/v4/projects/28/packages/npm/:_authToken=${TOKEN_FOR_GITLAB}
+//gitlab.domestika.org/api/v4/projects/18/packages/npm/:_authToken=${TOKEN_FOR_GITLAB}
+
+//registry.npmjs.org/:_authToken=${TOKEN_FOR_NPM}
+
