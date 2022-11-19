@@ -10,5 +10,6 @@ export const onRequestGet: PagesFunction<unknown> = async (context) => {
     // data // arbitrary space for passing data between middlewares
   } = context
 
-  return await fetch(`https://dle.rae.es/${params.word as string}`).then(async resp => await resp.text())
+  return new Response(`Definition for: ${params.word as string}`)
+  // return await fetch(`https://dle.rae.es/${params.word as string}`).then(async resp => await resp.text())
 }
