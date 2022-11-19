@@ -11,7 +11,6 @@ function App (): ReactElement {
       pattern: { value: string }
     }
 
-    console.log(target.pattern.value)
     if (words.current === undefined) {
       words.current = await fetch('/words.txt').then(async resp => await resp.text())
     }
