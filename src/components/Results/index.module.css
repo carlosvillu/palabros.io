@@ -1,0 +1,13 @@
+.container {
+  margin-top: var(--size-l);
+}
+
+.title {}
+
+.list { 
+  font-size: var(--size-s);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-s);
+  margin-top: var(--size-l);
+}

@@ -25,6 +25,13 @@
   outline: 1px solid var(--debug);
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .appMain {
   margin-top: var(--size-2xl);
   min-height: 100vh;
