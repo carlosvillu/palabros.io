@@ -1,4 +1,3 @@
-
 :root {
   /* COLORS */
 
@@ -20,13 +19,26 @@
   --size-3xs: 2px;
   --size-4xs: 1px;
   --size-full: 100%;
-
 }
 
-.debug {outline: 1px solid var(--debug);}
+.debug {
+  outline: 1px solid var(--debug);
+}
 
-.App-Main {
+.appMain {
   margin-top: var(--size-2xl);
   min-height: 100vh;
   min-width: 100vw;
+  background-color: aquamarine;
 }
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 
+* {
+  outline: 1px solid var(--debug);
+  background-color: #f001;
+} */
