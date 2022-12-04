@@ -1,4 +1,4 @@
-.Header {
+.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   height: var(--size-2xl);
 }
 
-.Header-Menu-Container svg {
+.headerMenuContainer svg {
   width: var(--size-l);
   height: var(--size-l);
 }
