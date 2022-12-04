@@ -2,7 +2,34 @@
   margin-top: var(--size-l);
 }
 
-.title {}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: var(--size-l);
+}
+
+.sorter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  left: var(--size-s);
+  width: var(--size-l);
+}
+
+.select {
+  border-radius: var(--size-s);
+  padding: var(--size-xs);
+  padding-left: var(--size-3xl);
+}
 
 .list { 
   font-size: var(--size-s);

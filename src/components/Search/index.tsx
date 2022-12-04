@@ -35,7 +35,7 @@ function Search ({ onSearch }: Props): ReactElement {
     <h2>Palabros</h2>
     <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
     <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>
-      <input className={styles.input} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
+      <input className={styles.input} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='cruc?gr?ma' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
       <div className={styles.filtersContainer}>
         <div className={styles.filters}>
           <input className={styles.filterItem} tabIndex={1} type='search' enterKeyHint="search" placeholder='Starts' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="start" />
