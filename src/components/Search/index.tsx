@@ -18,7 +18,7 @@ function Search ({ onSearch }: Props): ReactElement {
     }
 
     if (words.current === undefined) {
-      words.current = await fetch('/words.txt').then(async resp => await resp.text())
+      words.current = await fetch('https://palabros.io/words.txt').then(async resp => await resp.text())
     }
 
     if (typeof words.current !== 'string') return
@@ -38,10 +38,10 @@ function Search ({ onSearch }: Props): ReactElement {
       <input className={styles.input} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
       <div className={styles.filtersContainer}>
         <div className={styles.filters}>
-          <input className={styles.filterItem} tabIndex={1} type='search' enterKeyHint="search" placeholder='Starts' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
-          <input className={styles.filterItem} tabIndex={2} type='search' enterKeyHint="search" placeholder='Ends' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
-          <input className={styles.filterItem} tabIndex={3} type='search' enterKeyHint="search" placeholder='Contains' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
-          <input className={styles.filterItem} tabIndex={4} type='search' enterKeyHint="search" placeholder='Length' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
+          <input className={styles.filterItem} tabIndex={1} type='search' enterKeyHint="search" placeholder='Starts' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="start" />
+          <input className={styles.filterItem} tabIndex={2} type='search' enterKeyHint="search" placeholder='Ends' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="ends" />
+          <input className={styles.filterItem} tabIndex={3} type='search' enterKeyHint="search" placeholder='Contains' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="contains" />
+          <input className={styles.filterItem} tabIndex={4} type='search' enterKeyHint="search" placeholder='Length' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="length" />
         </div>
         <button className={styles.cta} type='submit'>Search</button>
       </div>
