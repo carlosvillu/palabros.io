@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { ReactElement, useRef } from 'react'
 
-import './index.css'
+import styles from './index.module.css'
 
 interface Props {
   onSearch: (results: string[]) => void
@@ -31,12 +31,20 @@ function Search ({ onSearch }: Props): ReactElement {
     const solution = [...matches].map(match => match[0]).map(match => match.replace('\n', ''))
     onSearch(solution)
   }
-  return <div className="Search debug">
+  return <div className={styles.search}>
     <h2>Palabros</h2>
     <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
-    <form className="Search-Form" onSubmit={handleSubmit as unknown as () => void}>
-      <input tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
-      <button type='submit'>Search</button>
+    <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>
+      <input className={styles.input} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
+      <div className={styles.filtersContainer}>
+        <div className={styles.filters}>
+          <input className={styles.filterItem} tabIndex={1} type='search' enterKeyHint="search" placeholder='Starts' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
+          <input className={styles.filterItem} tabIndex={2} type='search' enterKeyHint="search" placeholder='Ends' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
+          <input className={styles.filterItem} tabIndex={3} type='search' enterKeyHint="search" placeholder='Contains' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
+          <input className={styles.filterItem} tabIndex={4} type='search' enterKeyHint="search" placeholder='Length' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
+        </div>
+        <button className={styles.cta} type='submit'>Search</button>
+      </div>
     </form>
   </div>
 }
