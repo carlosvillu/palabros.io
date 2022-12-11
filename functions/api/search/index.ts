@@ -1,19 +1,25 @@
-import { words as xaa } from './xaa'
-import { words as xab } from './xab'
-import { words as xac } from './xac'
-import { words as xad } from './xad'
-import { words as xae } from './xae'
-import { words as xaf } from './xaf'
-import { words as xag } from './xag'
-import { words as xah } from './xah'
-import { words as xai } from './xai'
+// import { words as xaa } from './xaa'
+// import { words as xab } from './xab'
+// import { words as xac } from './xac'
+// import { words as xad } from './xad'
+// import { words as xae } from './xae'
+// import { words as xaf } from './xaf'
+// import { words as xag } from './xag'
+// import { words as xah } from './xah'
+// import { words as xai } from './xai'
 
 interface Env {
   NODE_VERSION: string
 }
+let words: string
+let fetchWords = false
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const words = xaa + xab + xac + xad + xae + xaf + xag + xah + xai
+  // const words = xaa + xab + xac + xad + xae + xaf + xag + xah + xai
+  if (words === undefined) {
+    words = await fetch('https://palabros.io/words').then(async resp => await resp.text())
+    fetchWords = true
+  }
   const url = new URL(context.request.url)
   const query = url.searchParams.get('query') as unknown as string
   const pattern = query
@@ -26,7 +32,8 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     .map(match => match.replaceAll('\n', ''))
 
   const response = Response.json({
-    data: { words: solution }
+    data: { words: solution },
+    meta: { fetchWords: fetchWords ? 'true' : 'false' }
   })
 
   // TODO: migrar esto a un middleware
