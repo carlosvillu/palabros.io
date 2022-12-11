@@ -1,3 +1,4 @@
+import { handler } from './handler'
 export const words = `
 deslumbra
 deslumbrá
@@ -75394,3 +75395,4 @@ engusgasteis
 engusgo
 engusgó
 `
+export const onRequestGet = handler(words)

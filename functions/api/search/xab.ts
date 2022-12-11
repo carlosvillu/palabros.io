@@ -1,4 +1,5 @@
-export const words = `
+import { handler } from './handler'
+const words = `
 sondando
 asondar
 asondara
@@ -82045,3 +82046,4 @@ constitucionalizara
 constitucionalizará
 constitucionalizarai
 `
+export const onRequestGet = handler(words)

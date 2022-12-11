@@ -1,4 +1,5 @@
-export const words = `
+import { handler } from './handler'
+const words = `
 heliocentrismo
 heliofísica
 heliofísico
@@ -82859,3 +82860,4 @@ oesnoroeste
 oesnorueste
 oeste
 `
+export const onRequestGet = handler(words)

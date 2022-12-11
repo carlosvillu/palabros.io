@@ -1,4 +1,5 @@
-export const words = `
+import { handler } from './handler'
+const words = `
 vitalizaréis
 vitalizaremos
 vitalizáremos
@@ -7723,3 +7724,4 @@ zuzar
 zuzo
 zuzón
 `
+export const onRequestGet = handler(words)

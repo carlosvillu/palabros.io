@@ -1,4 +1,5 @@
-export const words = `
+import { handler } from './handler'
+const words = `
 a
 aba
 ába
@@ -82516,4 +82517,4 @@ asondáis
 asondamos
 asondan
 `
-
+export const onRequestGet = handler(words)

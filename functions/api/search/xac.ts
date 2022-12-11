@@ -1,3 +1,4 @@
+import { handler } from './handler'
 export const words = `
 constitucionalizáramos
 constitucionalizaran
@@ -71236,3 +71237,4 @@ deslucirías
 deslucís
 desluciste
 `
+export const onRequestGet = handler(words)
