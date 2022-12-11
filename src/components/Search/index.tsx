@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ReactElement, useRef } from 'react'
+import { ReactElement } from 'react'
 
 import styles from './index.module.css'
 
@@ -8,8 +8,6 @@ interface Props {
 }
 
 function Search ({ onSearch }: Props): ReactElement {
-  const words = useRef<string | null>()
-
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
 
@@ -17,20 +15,12 @@ function Search ({ onSearch }: Props): ReactElement {
       pattern: { value: string }
     }
 
-    if (words.current === undefined) {
-      words.current = await fetch('https://palabros.io/words.txt').then(async resp => await resp.text())
-    }
-
-    if (typeof words.current !== 'string') return
-
-    const pattern = target.pattern.value
-      .replaceAll('?', '.')
-      .replaceAll(' ', '.')
-
-    const matches = words.current.matchAll(new RegExp('\n' + pattern + '\n', 'g'))
-    const solution = [...matches].map(match => match[0]).map(match => match.replace('\n', ''))
-    onSearch(solution)
+    // eslint-disable-next-line
+    const {data} = await fetch(import.meta.env.VITE_API_HOST + 'api/search?query=' + encodeURIComponent(target.pattern.value))
+      .then(async resp => await resp.json())
+    onSearch(data.words)
   }
+
   return <div className={styles.search}>
     <h2>Palabros</h2>
     <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
