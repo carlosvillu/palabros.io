@@ -7,6 +7,18 @@ interface Props {
   onSearch: (results: string[]) => void
 }
 
+const endpoints = [
+  'xaa',
+  'xab',
+  'xac',
+  'xad',
+  'xae',
+  'xaf',
+  'xag',
+  'xah',
+  'xai'
+]
+
 function Search ({ onSearch }: Props): ReactElement {
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
@@ -15,10 +27,12 @@ function Search ({ onSearch }: Props): ReactElement {
       pattern: { value: string }
     }
 
-    // eslint-disable-next-line
-    const {data} = await fetch(import.meta.env.VITE_API_HOST + 'api/search?query=' + encodeURIComponent(target.pattern.value))
-      .then(async resp => await resp.json())
-    onSearch(data.words)
+    const results = await Promise.all(endpoints.map(async endpoint => {
+      // eslint-disable-next-line
+      return await fetch(import.meta.env.VITE_API_HOST + 'api/search/' + endpoint + '?query=' + encodeURIComponent(target.pattern.value))
+        .then(async resp => await resp.json())
+    }))
+    onSearch(results.flat(Infinity))
   }
 
   return <div className={styles.search}>
