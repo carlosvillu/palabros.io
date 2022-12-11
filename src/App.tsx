@@ -1,42 +1,20 @@
-import { ReactElement, useRef, useState } from 'react'
-import './App.css'
+import { ReactElement, useState } from 'react'
+import styles from './App.module.css'
+import Header from './components/Header'
+import Results from './components/Results'
+import Search from './components/Search'
 
 function App (): ReactElement {
-  const [solutionState, setSolutionState] = useState<string[]>([])
-  const words = useRef<string | null>()
-  const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
-    event.preventDefault()
-
-    const target = event.target as typeof event.target & {
-      pattern: { value: string }
-    }
-
-    if (words.current === undefined) {
-      words.current = await fetch('/words.txt').then(async resp => await resp.text())
-    }
-
-    if (typeof words.current !== 'string') return
-
-    const matches = words.current.matchAll(new RegExp('\n' + target.pattern.value + '\n', 'g'))
-    const solution = [...matches].map(match => match[0]).map(match => match.replace('\n', ''))
-    setSolutionState(solution)
-  }
-
+  const [resultsState, setResultsState] = useState<string[]>([])
   return (
     <div className="App">
-      <h1>Palabros</h1>
-      <form onSubmit={handleSubmit as unknown as () => void}>
-        <label>Patrón de busqueda:</label>
-        <input tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='p.la..ota' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" required />
-        <button type='submit'>Search</button>
-      </form>
-      {(solutionState.length > 0) && <div>
-        <h2>Coincidencias</h2>
-        <ol>
-          {solutionState.map(word => <li key={word}>{word}</li>)}
-        </ol>
-      </div>}
-
+      <Header />
+      <main className={styles.appMain}>
+        <div className={styles.container}>
+          <Search onSearch={results => setResultsState(results)} />
+          <Results results={resultsState} />
+        </div>
+      </main>
     </div>
   )
 }

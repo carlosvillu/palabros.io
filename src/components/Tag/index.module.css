@@ -1,0 +1,14 @@
+.container {
+  background-color: tan;
+  margin-right: var(--size-l);
+  padding: var(--size-m);
+  border-radius: var(--size-s);
+  text-transform: uppercase;
+}
+
+.sub {
+  bottom: calc(-1 * var(--size-s));
+  font-size: var(--size-s);
+  position: relative;
+  vertical-align: baseline;
+}
