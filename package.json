@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && cp words.txt dist",
+    "dev": "npm run build && concurrently npm:dev:*",
+    "dev:function": "npx wrangler pages dev dist",
+    "dev:client": "vite",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./src --ext .ts,.tsx"
   },
@@ -21,6 +23,7 @@
     "@types/react-dom": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@vitejs/plugin-react": "^2.2.0",
+    "concurrently": "7.6.0",
     "eslint": "^8.27.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
