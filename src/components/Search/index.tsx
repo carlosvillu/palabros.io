@@ -27,11 +27,9 @@ function Search ({ onSearch }: Props): ReactElement {
       pattern: { value: string }
     }
 
-    const results = await Promise.all(endpoints.map(async endpoint => {
-      // eslint-disable-next-line
-      return await fetch(import.meta.env.VITE_API_HOST + 'api/search/' + endpoint + '?query=' + encodeURIComponent(target.pattern.value))
-        .then(async resp => await resp.json())
-    }))
+    // eslint-disable-next-line
+    const results = await fetch(import.meta.env.VITE_API_HOST + 'search?query=' + encodeURIComponent(target.pattern.value))
+      .then(async resp => await resp.json())
     onSearch(results.flat(Infinity))
   }
 
