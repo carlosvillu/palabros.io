@@ -7,7 +7,7 @@
     "dev": "npm run build && concurrently npm:dev:*",
     "dev:function": "npx wrangler pages dev dist",
     "dev:client": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp words.txt ./dist",
     "preview": "vite preview",
     "lint": "eslint ./src --ext .ts,.tsx"
   },
