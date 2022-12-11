@@ -1,10 +1,19 @@
-import { words } from './words'
+import { words as xaa } from './xaa'
+import { words as xab } from './xab'
+import { words as xac } from './xac'
+import { words as xad } from './xad'
+import { words as xae } from './xae'
+import { words as xaf } from './xaf'
+import { words as xag } from './xag'
+import { words as xah } from './xah'
+import { words as xai } from './xai'
 
 interface Env {
   NODE_VERSION: string
 }
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
+  const words = xaa + xab + xac + xad + xae + xaf + xag + xah + xai
   const url = new URL(context.request.url)
   const query = url.searchParams.get('query') as unknown as string
   const pattern = query
