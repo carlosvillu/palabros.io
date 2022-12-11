@@ -7,18 +7,6 @@ interface Props {
   onSearch: (results: string[]) => void
 }
 
-const endpoints = [
-  'xaa',
-  'xab',
-  'xac',
-  'xad',
-  'xae',
-  'xaf',
-  'xag',
-  'xah',
-  'xai'
-]
-
 function Search ({ onSearch }: Props): ReactElement {
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
