@@ -4,7 +4,7 @@ import Tag from '../Tag'
 import SortIcon from '../Icons/Sort'
 
 import styles from './index.module.css'
-import { weigth } from '../../js/stings'
+import { weigth } from '../../js/strings'
 
 interface Props {
   results: string[]

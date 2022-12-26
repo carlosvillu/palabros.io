@@ -38,6 +38,7 @@
   font-size: var(--size-m);
   margin: var(--size-2xs);
   padding: var(--size-s);
+  text-transform: uppercase;
 }
 
 .cta {
@@ -45,4 +46,12 @@
   padding: var(--size-s);
   border-radius: var(--size-l);
   width: 98%;
+}
+.reset {
+  margin: var(--size-m) var(--size-2xs) 0;
+  padding: var(--size-s);
+  width: 98%;
+  background-color: transparent;
+  border: none;
+
 }
