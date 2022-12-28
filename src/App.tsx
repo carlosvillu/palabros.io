@@ -1,6 +1,7 @@
 import { ReactElement, useState } from 'react'
 import styles from './App.module.css'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Results from './components/Results'
 import Search from './components/Search'
 
@@ -15,6 +16,7 @@ function App (): ReactElement {
           <Results results={resultsState} />
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

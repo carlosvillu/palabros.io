@@ -1,5 +1,13 @@
 // part of the code extracted from. https://github.com/epeli/underscore.string/blob/master/cleanDiacritics.js
 const from = 'ąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž'
+export interface Filter {
+  pattern: string
+  start: string
+  ends: string
+  contains: string
+  length: string
+}
+
 const to = 'aaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz'.split('')
 
 function replaceCharIfNeeded (char: string): string {
@@ -64,3 +72,27 @@ export const reducer: Reducer = word => (acc, token) => {
 
 // @ts-expect-error
 export const weigth = (word: string): unknown => Object.keys(weigths).reduce(reducer(slugify(word)), 0)
+
+// palabras-[que|de]-[se-parecen-a-pattern]-[empiezan-por-start]-[terminan-en-ends]-[contienen-contains]-[de-length-letras-de-largo]
+export const fromPathToFilter = (path: string): Filter => {
+  return {
+    pattern: (path.match(/parecen-a-(?<pattern>[a-z*]+)/)?.groups?.pattern ?? '').replaceAll('*', '?'),
+    start: path.match(/empiezan-por-(?<start>\w+)/)?.groups?.start ?? '',
+    ends: path.match(/terminan-en-(?<ends>\w+)/)?.groups?.ends ?? '',
+    contains: path.match(/contienen-(?<contains>\w+)/)?.groups?.contains ?? '',
+    length: path.match(/de-(?<length>\d+)-letras/)?.groups?.length ?? ''
+  }
+}
+
+export const fromFilterToPath = (filter: Filter): string => {
+  const path = Object.entries(filter).reduce((acc, [section, value]) => {
+    if (section === 'pattern' && Boolean(value)) acc.push(`se-parecen-a-${value.replaceAll('?', '*')}`) // eslint-disable-line 
+    if (section === 'start' && Boolean(value)) acc.push(`empiezan-por-${value}`)
+    if (section === 'ends' && Boolean(value)) acc.push(`terminan-en-${value}`)
+    if (section === 'contains' && Boolean(value)) acc.push(`contienen-${value}`)
+    if (section === 'length' && Boolean(value)) acc.push(`de-${value}-letras-de-largo`)
+
+    return acc
+  }, ['palabras-que'])
+  return path.join('-').replace('que-de', 'de')
+}
