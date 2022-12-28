@@ -10,6 +10,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.title {
+  text-transform: capitalize;
+  margin: 25px 0;
+  font-size: 1.5em;
+}
+
 .search {
   display: flex;
   flex-direction: column;

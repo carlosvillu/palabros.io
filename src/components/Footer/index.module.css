@@ -1,5 +1,6 @@
 .footer {
   width: 100vw;
   height: 300px;
+  margin-top: var(--size-xl);
 }
 

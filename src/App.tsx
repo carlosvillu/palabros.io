@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Results from './components/Results'
 import Search from './components/Search'
+import SEOSection from './components/SEOSection'
 
 function App (): ReactElement {
   const [resultsState, setResultsState] = useState<string[]>([])
@@ -14,6 +15,7 @@ function App (): ReactElement {
         <div className={styles.container}>
           <Search onSearch={results => setResultsState(results)} />
           <Results results={resultsState} />
+          <SEOSection />
         </div>
       </main>
       <Footer />

@@ -3,7 +3,8 @@
 
 import PropTypes from 'prop-types'
 import { ReactElement, useReducer, useEffect, useState } from 'react'
-import { fromPathToFilter, Filter, fromFilterToPath } from '../../js/strings'
+import { makeRequest } from '../../js/http'
+import { fromPathToFilter, Filter, fromFilterToPath, fromFilterToTitle } from '../../js/strings'
 
 import styles from './index.module.css'
 
@@ -11,27 +12,14 @@ interface Props {
   onSearch: (results: string[]) => void
 }
 
-const makeRequest = async (filters: Filter): Promise<string[]> => {
-  const params = []
-  if (filters.pattern) params.push('query=' + filters.pattern)
-  if (filters.start) params.push('start=' + filters.start)
-  if (filters.ends) params.push('ends=' + filters.ends)
-  if (filters.contains) params.push('contains=' + filters.contains)
-  if (filters.length) params.push('length=' + filters.length)
-
-  const results = await fetch(import.meta.env.VITE_API_HOST + 'search?' + params.join('&'))
-    .then(async resp => await resp.json())
-
-  return results.flat(Infinity)
-}
-
 function Search ({ onSearch }: Props): ReactElement {
   const [loadingState, setLoadingState] = useState(false)
   const [fields, dispatch] = useReducer((state: Filter, update: object) => ({ ...state, ...update }), fromPathToFilter(window.location.pathname))
 
   useEffect(() => {
-    const filter = fromPathToFilter(window.location.pathname)
-    if (Object.values(filter).some(filter => filter !== '')) {
+    function doEffect (): void {
+      const filter = fromPathToFilter(window.location.pathname)
+      if (!Object.values(filter).some(filter => filter !== '')) return
       document.body.style.overflowY = 'hidden'
       setLoadingState(true)
       // eslint-disable-next-line
@@ -45,6 +33,7 @@ function Search ({ onSearch }: Props): ReactElement {
         onSearch([])
       })
     }
+    doEffect()
   }, [])
 
   const handleSubmit = async (event: React.SyntheticEvent): Promise<void> => {
@@ -74,7 +63,7 @@ function Search ({ onSearch }: Props): ReactElement {
     {loadingState && <div className={styles.loader} >
       <div className={styles['lds-ring']}><div></div><div></div><div></div><div></div></div>
     </div>}
-    <h2>Palabros</h2>
+    <h1 className={styles.title}>{fromFilterToTitle(fromPathToFilter(window.location.pathname))}</h1>
     <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
     <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>
       <input className={styles.input} value={fields.pattern} onChange={evt => dispatch({ pattern: evt.target.value })} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='cruc?gr?ma' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />

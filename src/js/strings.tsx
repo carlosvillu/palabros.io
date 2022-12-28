@@ -15,6 +15,8 @@ function replaceCharIfNeeded (char: string): string {
   return index === -1 ? char : to[index]
 }
 
+export const ALPHABET = 'abcdefghijklmnñopqrstuvwxyz'.split('')
+
 export function slugify (str: string, allowQueryParams: boolean, removeDots: boolean): string {
   const validCharsRegEx = allowQueryParams
     ? /[^a-z0-9\\. \- ? =]/g // only letters numbers, dashes, dots, equals and question marks
@@ -95,4 +97,9 @@ export const fromFilterToPath = (filter: Filter): string => {
     return acc
   }, ['palabras-que'])
   return path.join('-').replace('que-de', 'de')
+}
+
+export const fromFilterToTitle = (filter: Filter): string => {
+  if (!Object.values(filter).some(filter => filter !== '')) return 'resolver crucigrama'
+  return fromFilterToPath(filter).replaceAll('-', ' ')
 }
