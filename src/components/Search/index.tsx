@@ -2,7 +2,7 @@
 /* eslint @typescript-eslint/restrict-plus-operands:0 */
 
 import PropTypes from 'prop-types'
-import { ReactElement, useReducer, useEffect } from 'react'
+import { ReactElement, useReducer, useEffect, useState } from 'react'
 import { fromPathToFilter, Filter, fromFilterToPath } from '../../js/strings'
 
 import styles from './index.module.css'
@@ -26,12 +26,24 @@ const makeRequest = async (filters: Filter): Promise<string[]> => {
 }
 
 function Search ({ onSearch }: Props): ReactElement {
+  const [loadingState, setLoadingState] = useState(false)
   const [fields, dispatch] = useReducer((state: Filter, update: object) => ({ ...state, ...update }), fromPathToFilter(window.location.pathname))
 
   useEffect(() => {
     const filter = fromPathToFilter(window.location.pathname)
     if (Object.values(filter).some(filter => filter !== '')) {
-      makeRequest(filter).then(results => onSearch(results)) // eslint-disable-line 
+      document.body.style.overflowY = 'hidden'
+      setLoadingState(true)
+      // eslint-disable-next-line
+      makeRequest(filter).then(results => {
+        document.body.style.overflowY = 'unset'
+        setLoadingState(false)
+        onSearch(results)
+      }).catch(() => {
+        document.body.style.overflowY = 'unset'
+        setLoadingState(false)
+        onSearch([])
+      })
     }
   }, [])
 
@@ -59,6 +71,9 @@ function Search ({ onSearch }: Props): ReactElement {
   }
 
   return <div className={styles.search}>
+    {loadingState && <div className={styles.loader} >
+      <div className={styles['lds-ring']}><div></div><div></div><div></div><div></div></div>
+    </div>}
     <h2>Palabros</h2>
     <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
     <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>
@@ -71,7 +86,10 @@ function Search ({ onSearch }: Props): ReactElement {
           <input className={styles.filterItem} value={fields.length} onChange={evt => dispatch({ length: evt.target.value })} tabIndex={4} type='number' enterKeyHint="search" placeholder='Length' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="length" />
         </div>
         <button className={styles.cta} type='submit'>Search</button>
-        <button className={styles.reset} onClick={() => { window.location.pathname = '/' }}>Limpiar</button>
+        <button className={styles.reset} onClick={(evt) => {
+          evt.preventDefault()
+          window.location.href = '/'
+        }}>Limpiar</button>
       </div>
     </form>
   </div>
