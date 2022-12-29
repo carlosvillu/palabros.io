@@ -8,7 +8,7 @@ interface Props {
 }
 
 function Tag ({ word, points }: Props): ReactElement {
-  return <span className={styles.container}>
+  return <span data-component='Tag' className={styles.container}>
     <span>{word}</span>
     <sub className={styles.sub}>{points}</sub>
   </span>

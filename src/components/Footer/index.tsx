@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 import styles from './index.module.css'
 
 function Footer (): ReactElement {
-  return <footer className={styles.footer}>
+  return <footer data-component='Footer' className={styles.footer}>
     Footer
   </footer >
 }

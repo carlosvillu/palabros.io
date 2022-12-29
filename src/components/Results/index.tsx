@@ -60,7 +60,7 @@ function Results ({ results = [] }: Props): ReactElement {
   // @ts-expect-error
   if (tags.length === 0) return
 
-  return <div className={styles.container}>
+  return <div data-component='Results' className={styles.container}>
     <div className={styles.header}>
       <h2 className={styles.title}>Coincidencias</h2>
       <div className={styles.sorter}>

@@ -59,7 +59,7 @@ function Search ({ onSearch }: Props): ReactElement {
     window.location.pathname = nextPathName
   }
 
-  return <div className={styles.search}>
+  return <div data-component='Search' className={styles.search}>
     {loadingState && <div className={styles.loader} >
       <div className={styles['lds-ring']}><div></div><div></div><div></div><div></div></div>
     </div>}

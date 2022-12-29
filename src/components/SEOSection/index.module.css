@@ -1,50 +1,7 @@
-.container {
-  margin-top: var(--size-l);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.header:not(:first-of-type) {
-  margin-top: var(--size-l);
-}
-
-.title {
-  font-size: var(--size-l);
-}
-
-.sorter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-}
-
-.list { 
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-size: var(--size-s);
-  gap: var(--size-s);
-  justify-content: center;
-  margin-top: var(--size-l);
-
-  background: white;
-  border-radius: var(--size-s);
-  padding: var(--size-xl) 0;
-}
-
-.item {
-  font-size: 1.5em;
-}
-
 .link {
   color: black;
   text-decoration: none;
+  font-size: 1.5em;
 }
 
 .letter {
