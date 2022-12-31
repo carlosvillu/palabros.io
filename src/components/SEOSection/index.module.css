@@ -5,6 +5,6 @@
 }
 
 .letter {
-  text-transform:capitalize;
+  text-transform: uppercase;
   color: brown;
 }
