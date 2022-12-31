@@ -24,7 +24,7 @@ function SEOSection (): ReactElement {
       <List items={ALPHABET}>{(letter) => {
         const slug = filters.start + letter
         return <a href={`/palabras-que-empiezan-por-${slug}`} className={styles.link}>
-          Palabras que empiezan por <span className={styles.letter}>{slug} para crucigramas</span>
+          Palabras que empiezan por <span className={styles.letter}>{slug}</span> para crucigramas
         </a>
       }}</List>
     </Panel>
