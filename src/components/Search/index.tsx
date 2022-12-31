@@ -69,12 +69,12 @@ function Search ({ onSearch }: Props): ReactElement {
       <input className={styles.input} value={fields.pattern} onChange={evt => dispatch({ pattern: evt.target.value })} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='cruc?gr?ma' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
       <div className={styles.filtersContainer}>
         <div className={styles.filters}>
-          <input className={styles.filterItem} value={fields.start} onChange={evt => dispatch({ start: evt.target.value })} tabIndex={1} type='text' enterKeyHint="search" placeholder='Starts' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="start" />
-          <input className={styles.filterItem} value={fields.ends} onChange={evt => dispatch({ ends: evt.target.value })} tabIndex={2} type='text' enterKeyHint="search" placeholder='Ends' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="ends" />
-          <input className={styles.filterItem} value={fields.contains} onChange={evt => dispatch({ contains: evt.target.value })} tabIndex={3} type='text' enterKeyHint="search" placeholder='Contains' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="contains" />
-          <input className={styles.filterItem} value={fields.length} onChange={evt => dispatch({ length: evt.target.value })} tabIndex={4} type='number' enterKeyHint="search" placeholder='Length' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="length" />
+          <input className={styles.filterItem} value={fields.start} onChange={evt => dispatch({ start: evt.target.value })} tabIndex={1} type='text' enterKeyHint="search" placeholder='Comienza' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="start" />
+          <input className={styles.filterItem} value={fields.ends} onChange={evt => dispatch({ ends: evt.target.value })} tabIndex={2} type='text' enterKeyHint="search" placeholder='Acaba' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="ends" />
+          <input className={styles.filterItem} value={fields.contains} onChange={evt => dispatch({ contains: evt.target.value })} tabIndex={3} type='text' enterKeyHint="search" placeholder='Contiene' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="contains" />
+          <input className={styles.filterItem} value={fields.length} onChange={evt => dispatch({ length: evt.target.value })} tabIndex={4} type='number' enterKeyHint="search" placeholder='Longitud' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="length" />
         </div>
-        <button className={styles.cta} type='submit'>Search</button>
+        <button className={styles.cta} type='submit'>Buscar</button>
         <button className={styles.reset} onClick={(evt) => {
           evt.preventDefault()
           window.location.href = '/'

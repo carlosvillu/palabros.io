@@ -6,6 +6,8 @@ import List from '../List'
 import Panel from '../Panel'
 import styles from './index.module.css'
 
+const MAX_LENGTH = 3
+
 function SEOSection (): ReactElement {
   const filters = fromPathToFilter(window.location.pathname)
 
@@ -13,15 +15,16 @@ function SEOSection (): ReactElement {
     <Panel title='Palabras por longitud'>
       <List items={Array.from({ length: 24 })}>{(_, index) => {
         return <a href={`/palabras-de-${index + 1}-letras-de-largo`} className={styles.link}>
-          Palabras de <span className={styles.letter}>{index + 1}</span> letras de largo
+          Palabras de <span className={styles.letter}>{index + 1}</span> letras para resolver crucigramas
         </a>
       }}</List>
 
     </Panel>
-    <Panel title="Lista de palabras">
+    <Panel title="Lista de palabras" hidden={filters.start.length === MAX_LENGTH}>
       <List items={ALPHABET}>{(letter) => {
-        return <a href={`/palabras-que-empiezan-por-${filters.start + letter}`} className={styles.link}>
-          Palabras que empiezan por <span className={styles.letter}>{filters.start + letter}</span>
+        const slug = filters.start + letter
+        return <a href={`/palabras-que-empiezan-por-${slug}`} className={styles.link}>
+          Palabras que empiezan por <span className={styles.letter}>{slug} para crucigramas</span>
         </a>
       }}</List>
     </Panel>

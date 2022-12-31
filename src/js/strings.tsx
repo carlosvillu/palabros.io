@@ -78,7 +78,7 @@ export const weigth = (word: string): unknown => Object.keys(weigths).reduce(red
 // palabras-[que|de]-[se-parecen-a-pattern]-[empiezan-por-start]-[terminan-en-ends]-[contienen-contains]-[de-length-letras-de-largo]
 export const fromPathToFilter = (path: string): Filter => {
   return {
-    pattern: (path.match(/parecen-a-(?<pattern>[a-zA-Z*]+)/)?.groups?.pattern ?? '').replaceAll('*', '?').toLowerCase(),
+    pattern: (path.match(/parecen-a-(?<pattern>[a-zA-Zñ*]+)/)?.groups?.pattern ?? '').replaceAll('*', '?').toLowerCase(),
     start: (path.match(/empiezan-por-(?<start>\w+)/)?.groups?.start ?? '').toLowerCase(),
     ends: (path.match(/terminan-en-(?<ends>\w+)/)?.groups?.ends ?? '').toLowerCase(),
     contains: (path.match(/contienen-(?<contains>\w+)/)?.groups?.contains ?? '').toLowerCase(),
@@ -100,6 +100,6 @@ export const fromFilterToPath = (filter: Filter): string => {
 }
 
 export const fromFilterToTitle = (filter: Filter): string => {
-  if (!Object.values(filter).some(filter => filter !== '')) return 'resolver crucigrama'
+  if (!Object.values(filter).some(filter => filter !== '')) return 'ayuda para resolver crucigrama y juegos de palabras'
   return fromFilterToPath(filter).replaceAll('-', ' ')
 }

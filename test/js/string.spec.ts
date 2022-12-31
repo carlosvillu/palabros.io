@@ -75,6 +75,17 @@ describe('String', () => {
         length: ''
       })
     })
+
+    it('[with ñ] only pattern', () => {
+      expect(fromPathToFilter('/palabras-que-se-parecen-a-mañana')).eql({
+        pattern: 'mañana',
+        start: '',
+        ends: '',
+        contains: '',
+        length: ''
+      })
+    })
+
     it('star ends', () => {
       expect(fromPathToFilter('/palabras-que-empiezan-por-ba-terminan-en-zah')).eql({
         pattern: '',

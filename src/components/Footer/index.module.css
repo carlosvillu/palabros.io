@@ -1,6 +1,28 @@
 .footer {
   width: 100vw;
   height: 100px;
-  background-color: dimgray;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  margin: 100px 0;
 }
 
+.logo {
+  font-family: 'Scramble';
+  margin-bottom: var(--size-l);
+}
+
+.links {
+  margin: var(--size-l) 0;
+}
+
+.link {
+  margin: var(--size-xs) 0;
+}
+
+.mail {
+  text-decoration: none;
+  color: black;
+  margin: var(--size-xs) 0;
+}
