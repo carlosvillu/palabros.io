@@ -4,7 +4,7 @@ import Hamburger from '../Icons/Hamburguer'
 
 function Header (): ReactElement {
   return <header data-component='Header' className={styles.header}>
-    <div className="Header-Left"><h1 className="Header-Logo-Container">PALABROS</h1></div>
+    <div className="Header-Left"><h1 className={styles.logos}>PALABROS</h1></div>
     {false && <div className="Header-Rigth"><span className={styles.headerMenuContainer}><Hamburger /></span></div>}
   </header >
 }

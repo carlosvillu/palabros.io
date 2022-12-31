@@ -14,6 +14,16 @@ describe('String', () => {
       })).eql('palabras-que-se-parecen-a-pelot*-empiezan-por-ba-terminan-en-zah-contienen-abg-de-9-letras-de-largo')
     })
 
+    it('[uppercase] full path', function () {
+      expect(fromFilterToPath({
+        pattern: 'PELOT?',
+        start: 'BA',
+        ends: 'Zah',
+        contains: 'aBg',
+        length: '9'
+      })).eql('palabras-que-se-parecen-a-pelot*-empiezan-por-ba-terminan-en-zah-contienen-abg-de-9-letras-de-largo')
+    })
+
     it('only length', function () {
       expect(fromFilterToPath({
         pattern: '',
@@ -38,6 +48,16 @@ describe('String', () => {
   describe('fromPathToFilter', function () {
     it('full path', () => {
       expect(fromPathToFilter('/palabras-que-se-parecen-a-pelot*-empiezan-por-ba-terminan-en-zah-contienen-abg-de-9-letras-de-largo')).eql({
+        pattern: 'pelot?',
+        start: 'ba',
+        ends: 'zah',
+        contains: 'abg',
+        length: '9'
+      })
+    })
+
+    it('[upppercase] full path', () => {
+      expect(fromPathToFilter('/palabras-que-se-parecen-a-PELOT*-empiezan-por-BA-terminan-en-Zah-contienen-abg-de-9-letras-de-largo')).eql({
         pattern: 'pelot?',
         start: 'ba',
         ends: 'zah',

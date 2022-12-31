@@ -3,7 +3,7 @@
 
 import PropTypes from 'prop-types'
 import { ReactElement, useReducer, useEffect, useState } from 'react'
-import { makeRequest } from '../../js/http'
+import { search } from '../../js/http'
 import { fromPathToFilter, Filter, fromFilterToPath, fromFilterToTitle } from '../../js/strings'
 
 import styles from './index.module.css'
@@ -23,7 +23,7 @@ function Search ({ onSearch }: Props): ReactElement {
       document.body.style.overflowY = 'hidden'
       setLoadingState(true)
       // eslint-disable-next-line
-      makeRequest(filter).then(results => {
+      search(filter).then(results => {
         document.body.style.overflowY = 'unset'
         setLoadingState(false)
         onSearch(results)

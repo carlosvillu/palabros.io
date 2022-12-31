@@ -1,6 +1,6 @@
 import { Filter } from './strings'
 
-export const makeRequest = async (filters: Filter): Promise<string[]> => {
+export const search = async (filters: Filter): Promise<string[]> => {
   const params = []
   if (filters.pattern) params.push('query=' + filters.pattern)
   if (filters.start) params.push('start=' + filters.start)

@@ -78,20 +78,20 @@ export const weigth = (word: string): unknown => Object.keys(weigths).reduce(red
 // palabras-[que|de]-[se-parecen-a-pattern]-[empiezan-por-start]-[terminan-en-ends]-[contienen-contains]-[de-length-letras-de-largo]
 export const fromPathToFilter = (path: string): Filter => {
   return {
-    pattern: (path.match(/parecen-a-(?<pattern>[a-z*]+)/)?.groups?.pattern ?? '').replaceAll('*', '?'),
-    start: path.match(/empiezan-por-(?<start>\w+)/)?.groups?.start ?? '',
-    ends: path.match(/terminan-en-(?<ends>\w+)/)?.groups?.ends ?? '',
-    contains: path.match(/contienen-(?<contains>\w+)/)?.groups?.contains ?? '',
-    length: path.match(/de-(?<length>\d+)-letras/)?.groups?.length ?? ''
+    pattern: (path.match(/parecen-a-(?<pattern>[a-zA-Z*]+)/)?.groups?.pattern ?? '').replaceAll('*', '?').toLowerCase(),
+    start: (path.match(/empiezan-por-(?<start>\w+)/)?.groups?.start ?? '').toLowerCase(),
+    ends: (path.match(/terminan-en-(?<ends>\w+)/)?.groups?.ends ?? '').toLowerCase(),
+    contains: (path.match(/contienen-(?<contains>\w+)/)?.groups?.contains ?? '').toLowerCase(),
+    length: (path.match(/de-(?<length>\d+)-letras/)?.groups?.length ?? '').toLowerCase()
   }
 }
 
 export const fromFilterToPath = (filter: Filter): string => {
   const path = Object.entries(filter).reduce((acc, [section, value]) => {
-    if (section === 'pattern' && Boolean(value)) acc.push(`se-parecen-a-${value.replaceAll('?', '*')}`) // eslint-disable-line 
-    if (section === 'start' && Boolean(value)) acc.push(`empiezan-por-${value}`)
-    if (section === 'ends' && Boolean(value)) acc.push(`terminan-en-${value}`)
-    if (section === 'contains' && Boolean(value)) acc.push(`contienen-${value}`)
+    if (section === 'pattern' && Boolean(value)) acc.push(`se-parecen-a-${value.replaceAll('?', '*').toLowerCase()}`) // eslint-disable-line 
+    if (section === 'start' && Boolean(value)) acc.push(`empiezan-por-${value.toLowerCase()}`)
+    if (section === 'ends' && Boolean(value)) acc.push(`terminan-en-${value.toLowerCase()}`)
+    if (section === 'contains' && Boolean(value)) acc.push(`contienen-${value.toLowerCase()}`)
     if (section === 'length' && Boolean(value)) acc.push(`de-${value}-letras-de-largo`)
 
     return acc
