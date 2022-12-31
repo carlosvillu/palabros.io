@@ -33,7 +33,7 @@ html {
 }
 
 .appMain {
-  margin-top: var(--size-2xl);
+  margin-top: var(--size-7xl);
   min-height: 100vh;
   min-width: 100vw;
   background-color: aquamarine;
