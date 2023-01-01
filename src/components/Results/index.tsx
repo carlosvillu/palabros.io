@@ -1,7 +1,7 @@
 import { Meta } from 'react-head'
 
 import { ReactElement, useEffect, useState } from 'react'
-import { fromPathToFilter, Filter, fromFilterToPath, fromFilterToTitle, weigth } from '../../js/strings'
+import { fromPathToFilter, fromFilterToTitle, weigth } from '../../js/strings'
 import PropTypes from 'prop-types'
 import Tag from '../Tag'
 import SortIcon from '../Icons/Sort'
