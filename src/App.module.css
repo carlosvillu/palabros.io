@@ -3,6 +3,13 @@
 
   --debug: red;
 
+  /** COLORS */
+
+  --green: #96CEB4;
+  --gold: #FFEEAD;
+  --red: #D9534F;
+  --orange: #FFAD60;
+
   /** SIZES */
   --size-7xl: 80px;
   --size-6xl: 72px;
@@ -36,8 +43,9 @@ html {
   margin-top: var(--size-7xl);
   min-height: 100vh;
   min-width: 100vw;
-  background-color: aquamarine;
+  background-color: var(--green);
   padding-bottom: var(--size-2xl);
+  font-family: 'Inter';
 }
 
 .container {

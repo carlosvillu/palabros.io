@@ -6,5 +6,5 @@
 
 .letter {
   text-transform: uppercase;
-  color: brown;
+  color: var(--red);
 }

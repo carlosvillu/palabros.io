@@ -1,5 +1,5 @@
 .container {
-  background-color: tan;
+  background-color: var(--gold);
   margin-right: var(--size-l);
   padding: var(--size-m);
   border-radius: var(--size-s);
