@@ -64,7 +64,7 @@ function Results ({ results = [] }: Props): ReactElement {
   if (tags.length === 0) return <Meta name="description" content={`▶️  ${title} ◀️ `} />
 
   return <div data-component='Results' className={styles.container}>
-    <Meta name="description" content={`🔍 ${title}. 🔥 ¡Seguro que vas a poder acabar ese crucigramas!`} />
+    <Meta name="description" content={`🔍 con (${tags.length}) resultados para ${title}. 🔥 ¡Seguro que vas a poder acabar ese crucigramas!`} />
     <div className={styles.header}>
       <h2 className={styles.title}>Coincidencias</h2>
       <div className={styles.sorter}>
