@@ -17,7 +17,8 @@
     "@s-ui/react-head": "^1.11.0",
     "@s-ui/react-router": "^1.15.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-head": "^3.4.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "3.18.0",

@@ -1,10 +1,12 @@
+import { Meta } from 'react-head'
+
 import { ReactElement, useEffect, useState } from 'react'
+import { fromPathToFilter, Filter, fromFilterToPath, fromFilterToTitle, weigth } from '../../js/strings'
 import PropTypes from 'prop-types'
 import Tag from '../Tag'
 import SortIcon from '../Icons/Sort'
 
 import styles from './index.module.css'
-import { weigth } from '../../js/strings'
 
 interface Props {
   results: string[]
@@ -57,10 +59,13 @@ function Results ({ results = [] }: Props): ReactElement {
       break
   }
 
+  const title = fromFilterToTitle(fromPathToFilter(window.location.pathname))
+
   // @ts-expect-error
-  if (tags.length === 0) return
+  if (tags.length === 0) return <Meta name="description" content={`▶️  ${title} ◀️ `} />
 
   return <div data-component='Results' className={styles.container}>
+    <Meta name="description" content={`🔍 ${title}. 🔥 ¡Seguro que vas a poder acabar ese crucigramas!`} />
     <div className={styles.header}>
       <h2 className={styles.title}>Coincidencias</h2>
       <div className={styles.sorter}>
