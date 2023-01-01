@@ -64,7 +64,7 @@ function Search ({ onSearch }: Props): ReactElement {
       <div className={styles['lds-ring']}><div></div><div></div><div></div><div></div></div>
     </div>}
     <h1 className={styles.title}>{fromFilterToTitle(fromPathToFilter(window.location.pathname))}</h1>
-    <h3>Puedes usar <strong>?</strong> como comodín para burcar tu palabra</h3>
+    <h3>Puedes usar <strong>?</strong> como comodín para bsscar tu palabra</h3>
     <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>
       <input className={styles.input} value={fields.pattern} onChange={evt => dispatch({ pattern: evt.target.value })} tabIndex={0} autoFocus type="search" enterKeyHint="search" placeholder='cruc?gr?ma' autoComplete="off" autoCapitalize="off" autoCorrect="off" name="pattern" />
       <div className={styles.filtersContainer}>
