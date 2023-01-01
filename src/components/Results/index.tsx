@@ -61,7 +61,6 @@ function Results ({ results = [] }: Props): ReactElement {
 
   const title = fromFilterToTitle(fromPathToFilter(window.location.pathname))
 
-  // @ts-expect-error
   if (tags.length === 0) return <Meta name="description" content={`▶️  ${title} ◀️ `} />
 
   return <div data-component='Results' className={styles.container}>
