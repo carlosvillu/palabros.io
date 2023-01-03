@@ -27,12 +27,12 @@ function Tag ({ word, points }: Props): ReactElement {
   }
 
   return <div className={styles.container} onClick={handeClick}>
+    <Loading show={loadingState} />
     <span data-component='Tag' >
       <span>{word}</span>
       <sub className={styles.sub}>{points}</sub>
     </span>
     <div hidden={showDefState}>
-      <Loading show={loadingState} />
       {(defintionsState != null) && <List items={defintionsState}>{(def) => <span className={styles.def}>{def as string}</span>}</List>}
     </div>
   </div>

@@ -3,7 +3,7 @@
   height: 100vh;
   background: #00000082;
   z-index: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
