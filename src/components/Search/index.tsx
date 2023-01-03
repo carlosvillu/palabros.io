@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { ReactElement, useReducer, useEffect, useState } from 'react'
 import { search } from '../../js/http'
 import { fromPathToFilter, Filter, fromFilterToPath, fromFilterToTitle } from '../../js/strings'
+import Loading from '../Loading'
 
 import styles from './index.module.css'
 
@@ -20,15 +21,12 @@ function Search ({ onSearch }: Props): ReactElement {
     function doEffect (): void {
       const filter = fromPathToFilter(window.location.pathname)
       if (!Object.values(filter).some(filter => filter !== '')) return
-      document.body.style.overflowY = 'hidden'
       setLoadingState(true)
       // eslint-disable-next-line
       search(filter).then(results => {
-        document.body.style.overflowY = 'unset'
         setLoadingState(false)
         onSearch(results)
       }).catch(() => {
-        document.body.style.overflowY = 'unset'
         setLoadingState(false)
         onSearch([])
       })
@@ -60,9 +58,7 @@ function Search ({ onSearch }: Props): ReactElement {
   }
 
   return <div data-component='Search' className={styles.search}>
-    {loadingState && <div className={styles.loader} >
-      <div className={styles['lds-ring']}><div></div><div></div><div></div><div></div></div>
-    </div>}
+    <Loading show={loadingState} />
     <h1 className={styles.title}>{fromFilterToTitle(fromPathToFilter(window.location.pathname))}</h1>
     <h3>Puedes usar <strong>?</strong> como comodín para bsscar tu palabra</h3>
     <form className={styles.searchForm} onSubmit={handleSubmit as unknown as () => void}>

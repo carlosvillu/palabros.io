@@ -12,3 +12,15 @@
   position: relative;
   vertical-align: baseline;
 }
+
+.def {
+  border-bottom: 1px solid;
+  display: block;
+  font-size: 1.2em;
+  padding: 10px 25px;
+  width: 100%;
+}
+
+.def:last-child {
+  border-bottom: none;
+}

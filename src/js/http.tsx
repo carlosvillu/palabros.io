@@ -1,5 +1,12 @@
 import { Filter } from './strings'
 
+export const definition = async (word: string): Promise<string[]> => {
+  const results = await fetch(import.meta.env.VITE_API_HOST + 'definition?query=' + word)
+    .then(async resp => await resp.json())
+
+  return results
+}
+
 export const search = async (filters: Filter): Promise<string[]> => {
   const params = []
   if (filters.pattern) params.push('query=' + filters.pattern)
